@@ -417,7 +417,7 @@ os.environ.setdefault('DJANGO_LIVE_TEST_SERVER_ADDRESS', 'localhost:9013-9199')
 
 BROKER_DURABILITY = True
 BROKER_POOL_LIMIT = None
-BROKER_URL = 'unix:///var/run/redis/redis.sock'
+BROKER_URL = os.environ.get("BROKER_URL", 'unix:///var/run/redis/redis.sock')
 BROKER_TRANSPORT_OPTIONS = {}
 CELERYBEAT_SCHEDULE = {
     'tower_scheduler': {
@@ -451,7 +451,7 @@ CELERYBEAT_SCHEDULE = {
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': 'unix:/var/run/memcached/memcached.sock'
+        'LOCATION': os.environ.get("MEMCACHED_URL", 'unix:/var/run/memcached/memcached.sock')
     },
 }
 
